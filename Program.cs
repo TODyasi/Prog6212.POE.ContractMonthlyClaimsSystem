@@ -1,3 +1,6 @@
+using CMCS.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace Prog6212.POE.ContractMonthlyClaimsSystem
 {
     public class Program
@@ -5,9 +8,13 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            // Configuring the dbContext to use sql server for the web project
+            builder.Services.AddDbContext<ApplicationDbContext>(option =>
+            option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))); 
 
             var app = builder.Build();
 
@@ -28,7 +35,7 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=LandingPage}/{action=Index}/{id?}");
 
             app.Run();
         }
