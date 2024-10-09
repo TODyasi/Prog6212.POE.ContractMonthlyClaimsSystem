@@ -46,14 +46,14 @@
         <img src="\Images\CMCS Logo.png" alt="CMCS Logo" class="logo" />
 
         <!-- Sign Up Button -->
-        <form asp-controller="Account" asp-action="Register">
-            <button type="submit" class="primary-button">Sign Up</button>
-        </form>
+        <a asp-controller="Account" asp-action="Register" class="primary-button" style="text-decoration: none; display: inline-block; text-align: center;">
+            Sign Up
+        </a>
 
         <!-- Login Button -->
-        <form asp-controller="Account" asp-action="Login">
-            <button type="submit" class="primary-button">Login</button>
-        </form>
+        <a asp-controller="Account" asp-action="Login" class="primary-button" style="text-decoration: none; display: inline-block; text-align: center;">
+            Login
+        </a>
     </div>
 </body>
 </html>
