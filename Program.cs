@@ -35,7 +35,7 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=LandingPage}/{action=Index}/{id?}");
+                pattern: "{controller=Claims}/{action=CreateClaim}/{id?}");
 
             app.Run();
         }

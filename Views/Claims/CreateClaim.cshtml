@@ -1,0 +1,41 @@
+﻿@model CMCS.Domain.Entities.ClaimsModels.ClaimsBaseModel
+
+<h2>Create New Claim</h2>
+
+<form asp-action="CreateClaim" method="post">
+    <div class="form-group">
+        <label asp-for="Title">Enter Claim Title</label>
+        <input asp-for="Title" class="form-control" required />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description">Enter Claim Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ClaimType">Enter Claim Type</label>
+        <input asp-for="ClaimType" class="form-control" required />
+        <span asp-validation-for="ClaimType" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="HoursWorked">Hours Worked This Month</label>
+        <input asp-for="HoursWorked" type="number" class="form-control" step="0.01" required />
+        <span asp-validation-for="HoursWorked" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="HourlyRate">Lecturer Hourly Rate</label>
+        <input asp-for="HourlyRate" type="number" class="form-control" step="0.01" required />
+        <span asp-validation-for="HourlyRate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AdditionalNotes"> Additional Notes For Reviewer</label>
+        <textarea asp-for="AdditionalNotes" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Claim</button>
+</form>
