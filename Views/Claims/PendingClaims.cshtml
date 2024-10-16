@@ -1,0 +1,40 @@
+﻿@model IEnumerable<CMCS.Domain.Entities.ClaimsModels.ClaimsBaseModel>
+@*This view is the view to allow reviewers the ability to review claims*@
+<h2>Pending Claims</h2>
+
+<table class="table">
+    <thead>
+        <tr>       
+            <th>Claim ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date Created</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var claim in Model)
+
+        {
+            <tr>
+                <td>@claim.ClaimId</td>
+                <td>@claim.Title</td>
+                <td>@claim.Description</td>
+                <td>@claim.DateCreated.ToString("yyyy-MM-dd")</td>
+                <td>@claim.ClaimStatus</td>
+                <td>
+                    <form asp-action="ChangeClaimStatus" asp-controller="Claims" method="post" style="display:inline">
+                        <input type="hidden" name="claimId" value="@claim.ClaimId" />
+                        <button type="submit" class="btn btn-primary" name="action" value="approve">Approve</button>
+                    </form>
+                    <form asp-action="ChangeClaimStatus" asp-controller="Claims" method="post">
+                        <input type="hidden" name="claimId" value="@claim.ClaimId" />
+                        <button type="submit" class="btn btn-outline-danger" name="action" value="reject">Reject</button>
+                    </form>
+                   
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

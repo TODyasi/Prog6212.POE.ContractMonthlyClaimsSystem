@@ -1,8 +1,19 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        </title>
+        
+    </head>
+    <body>
+        <div>
+            <a asp-controller="Claims" asp-action="CreateClaim" class="primary-button" style="text-decoration: none; display: inline-block; text-align: center;">
+                Create Claim
+            </a>
+            <a asp-controller="Claims" asp-action="PendingClaims" class="primary-button" style="text-decoration: none; display: inline-block; text-align: center;">
+                Review Claims
+            </a>
+        </div>
+       
+    </body>
+</html>
