@@ -1,37 +1,37 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-
-@model CMCS.Domain.Entities.UserModels.UserModel
+﻿@model CMCS.Domain.Entities.UserModels.UserModel
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title> Register</title>
-        
-    </head>
-    <body>
-        
-        <h1>Create new account</h1>
-        <div>
+<head>
+    <title>Register</title>
+</head>
+<body>
+    <h1>Create New Account</h1>
+    <div>
         <form asp-action="Register" asp-controller="Account" method="post">
             <label>Full Name</label>
             <br />
-            <input type="text" name="Name" />
+            <input type="text" name="Name" required />
             <br />
             <label>Email</label>
             <br />
-            <input type="email" name="Email" />
+            <input type="email" name="Email" required />
             <br />
             <label>Create Password</label>
             <br />
-            <input type="password" name="Password" />
+            <input type="password" name="Password" required />
             <br />
             <label>Role</label>
             <br />
-            <input type="text" name="Role" />
+            @* Assuming UserRole enum is in the correct namespace *@
+            @foreach (var role in Enum.GetValues(typeof(CMCS.Domain.Entities.UserModels.Enums.UserRole)))
+            {
+                    <input type="radio" name="Role" value="@role" id="@role" required />
+                    <label for="@role">@role</label>
+                    <br />
+            }
             <br />
             <button type="submit" class="btn btn-secondary">Create Account</button>
         </form>
-        </div>
-    </body>
+    </div>
+</body>
 </html>

@@ -1,21 +1,23 @@
-﻿@*Add the model of the claims*@
+﻿@* Add the model of the claims *@
 @model IEnumerable<CMCS.Domain.Entities.ClaimsModels.ClaimsBaseModel>
 
-<h1> CLAIMS LIST </h1>
-@*This view displays all the claims that wre present in the database*@
+<h1>CLAIMS LIST</h1>
+@* This view displays all the claims that are present in the database *@
 
-@*Table to display the claims that are returned by the claims controller*@
+@* Table to display the claims that are returned by the claims controller *@
 <table class="table table-bordered table-striped">
     <thead>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Claim Status</th>
-        <th>Claim Type</th>
-        <th>Date Created</th>
-        <th>Date Submitted</th>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Claim Status</th>
+            <th>Claim Type</th>
+            <th>Date Created</th>
+            <th>Date Submitted</th>
+        </tr>
     </thead>
     <tbody>
-        @*For loop to retrieve all the data in the database*@
+        @* For loop to retrieve all the data in the database *@
         @foreach (var obj in Model)
         {
             <tr>
@@ -25,7 +27,8 @@
                 <td>@obj.ClaimType</td>
                 <td>@obj.DateCreated</td>
                 <td>@obj.DateSubmitted</td>
-            </tr>        
+
+            </tr>
         }
     </tbody>
 </table>

@@ -1,0 +1,38 @@
+CREATE DATABASE clothingStore;
+USE clothingStore;
+
+CREATE TABLE tblAdmin(
+adminID int PRIMARY KEY auto_increment,
+adminUsername varchar(50) not null,
+adminEmail varchar(50) not null,
+adminPassword varchar(50) not null);
+
+CREATE TABLE tblUser(
+userID int PRIMARY KEY auto_increment,
+userFirstName varchar(50) not null,
+userEmail varchar(50) not null,
+username varchar(50) not null,
+userPassword varchar(50) not null);
+
+CREATE TABLE tblBrand(
+    brandID int PRIMARY KEY auto_increment,
+    brandImage LONGBLOB NOT NULL,
+    brandName varchar(50) NOT NULL
+
+);
+CREATE TABLE tblCategory(
+    categoryID int PRIMARY KEY auto_increment,
+    categoryName varchar(50) NOT NULL
+);
+
+CREATE TABLE tblClothes(
+clothingID int PRIMARY KEY auto_increment,
+clothingBrand varchar(50) not null,
+clothingDescription varchar(100),
+clothingSize varchar(10) not null,
+clothingPrice float(4) not null,
+clothingImage blob,
+brandID int,
+categoryID int,
+FOREIGN KEY (categoryID) REFERENCES tblCategory(categoryID),
+FOREIGN KEY(brandID) REFERENCES tblBrand(brandID));

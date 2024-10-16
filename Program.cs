@@ -1,4 +1,5 @@
 using CMCS.Infrastructure.Data;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 
 namespace Prog6212.POE.ContractMonthlyClaimsSystem
@@ -8,7 +9,10 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            
+            builder.Services.Configure<FormOptions>(options =>
+            {
+                options.MultipartBodyLengthLimit = 2 * 1024 * 1024; // 2 MB
+            });
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
@@ -35,7 +39,7 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=LandingPage}/{action=Index}/{id?}");
 
             app.Run();
         }
