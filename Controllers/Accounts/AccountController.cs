@@ -32,11 +32,11 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem.Controllers.Accounts
             // Check if a user with the same email already exists
             if (_usersDb.Users.Any(u => u.Email == user.Email))
             {
-                ViewBag.Message = "An account with this email already exists.";
+                ViewData["Message"] = "An account with this email already exists.";
+                return View(user); 
             }
-
             //Add user to the database
-          _usersDb.Users.Add(user);
+            _usersDb.Users.Add(user);
 
             //Save changes to the database
             await _usersDb.SaveChangesAsync();
