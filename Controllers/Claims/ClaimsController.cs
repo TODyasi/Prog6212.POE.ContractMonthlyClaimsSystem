@@ -11,13 +11,11 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem.Controllers
     // interacting with the database through the ApplicationDbContext.
     public class ClaimsController : Controller
     {
-        // Implementation of DbContext from program.cs file
+       
         private readonly ApplicationDbContext _claimsDb;
-
-        // Constructor to initialize the ClaimsController with the ApplicationDbContext
         public ClaimsController(ApplicationDbContext claimsDb)
         {
-            _claimsDb = claimsDb; // Assigning the passed ApplicationDbContext to the _claimsDb variable
+            _claimsDb = claimsDb; 
         }
 
         // The Index method retrieves all claims from the database and converts them into a list.
@@ -34,7 +32,7 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem.Controllers
         // This view will be returned when the user wants to create a new claim
         public IActionResult CreateClaim()
         {
-            return View(); // Returning the view for creating a new claim
+            return View(); 
         }
 
 
@@ -44,9 +42,9 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem.Controllers
         [HttpPost]
         public IActionResult CreateClaim(ClaimsBaseModel obj)
         {
-            _claimsDb.Claims.Add(obj); // Adding the new claim object to the Claims DbSet
-            _claimsDb.SaveChanges(); // Saving the changes to the database
-            return RedirectToAction("Index", "Home"); // Redirecting to the Index view after creation
+            _claimsDb.Claims.Add(obj); 
+            _claimsDb.SaveChanges(); 
+            return RedirectToAction("LecturerView", "Lecturer"); 
         }
 
         // The ChangeClaimStatus method updates the status of a claim based on the specified action (approve or reject).
@@ -56,22 +54,22 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem.Controllers
         public IActionResult ChangeClaimStatus(int claimId, string action)
         {
             var claim = _claimsDb.Claims.FirstOrDefault(c => c.ClaimId == claimId); // Retrieving the claim by its ID
-            if (claim != null) // Checking if the claim exists
+            if (claim != null)
             {
                 // Update the claim status based on the action
-                if (action == "approve") // If the action is to approve
+                if (action == "approve")
                 {
-                    claim.ClaimStatus = ClaimStatus.Approved; // Change to the approved status
+                    claim.ClaimStatus = ClaimStatus.Approved; 
                 }
-                else if (action == "reject") // If the action is to reject
+                else if (action == "reject") 
                 {
-                    claim.ClaimStatus = ClaimStatus.Rejected; // Change to the rejected status
+                    claim.ClaimStatus = ClaimStatus.Rejected; 
                 }
 
-                _claimsDb.SaveChanges(); // Saving the changes to the database
+                _claimsDb.SaveChanges(); 
             }
 
-            return RedirectToAction("PendingClaims"); // Redirecting back to the PendingClaims view
+            return RedirectToAction("PendingClaims"); 
         }
 
 
@@ -80,9 +78,9 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem.Controllers
         public IActionResult PendingClaims()
         {
             var pendingClaims = _claimsDb.Claims
-                .Where(c => c.ClaimStatus == ClaimStatus.Pending) // Filtering claims with status Pending
-                .ToList(); // Converting the filtered claims to a list
-            return View(pendingClaims); // Returning the view with the list of pending claims
+                .Where(c => c.ClaimStatus == ClaimStatus.Pending) 
+                .ToList(); 
+            return View(pendingClaims);
         }
 
         // The RejectedClaims method retrieves all claims that have a status of Rejected from the database.
@@ -90,10 +88,10 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem.Controllers
         public IActionResult RejectedClaims()
         {
             var rejectedClaims = _claimsDb.Claims
-               .Where(c => c.ClaimStatus == ClaimStatus.Rejected) // Filtering claims with status Rejected
-               .ToList(); // Converting the filtered claims to a list
+               .Where(c => c.ClaimStatus == ClaimStatus.Rejected) 
+               .ToList();
 
-            return View(rejectedClaims); // Returning the view with the list of Rejected claims
+            return View(rejectedClaims); 
         }
 
         // The ApprovedClaims method retrieves all claims that have a status of Approved from the database.
@@ -101,10 +99,14 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem.Controllers
         public IActionResult ApprovedClaims()
         {
             var approvedClaims = _claimsDb.Claims
-               .Where(c => c.ClaimStatus == ClaimStatus.Approved) // Filtering claims with status Approved
-               .ToList(); // Converting the filtered claims to a list
+               .Where(c => c.ClaimStatus == ClaimStatus.Approved) 
+               .ToList(); 
 
-            return View(approvedClaims); // Returning the view with the list of approved claims
+            return View(approvedClaims); 
+        }
+        public IActionResult ComingSoon()
+        {
+            return View();
         }
     }
 }

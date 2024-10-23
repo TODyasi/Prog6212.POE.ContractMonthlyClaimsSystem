@@ -1,6 +1,7 @@
 ﻿using CMCS.Infrastructure.Data;
 using CMCS.Domain.Entities.UserModels;
 using Microsoft.AspNetCore.Mvc;
+using CMCS.Domain.Entities.UserModels.Enums;
 
 namespace Prog6212.POE.ContractMonthlyClaimsSystem.Controllers.Accounts
 {
@@ -54,9 +55,20 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem.Controllers.Accounts
                 ViewBag.Message = "Invalid email or password.";
                 return View();
             }
+            switch (user.Role)
+            {
+                case UserRole.Lecturer:
+                    return RedirectToAction("LecturerView", "Lecturer");
 
-            // Redirect to the home view after successful login
-            return RedirectToAction("Index", "Home");
+                case UserRole.ProgramCoordinator:
+                    return RedirectToAction("ReviewerView", "Reviewer");
+
+                case UserRole.AcademicManager:
+                    return RedirectToAction("ReviewerView", "Reviewer");
+
+                default:
+                    return RedirectToAction("Index", "Home");
+            }
         }
 
 
