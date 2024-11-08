@@ -12,18 +12,18 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem.Controllers.Documents
         // Constructor to initialize the controller with the hosting environment
         public UploadDocumentsController(IWebHostEnvironment env)
         {
-            _env = env; // Assigning the passed environment to the _env variable
+            _env = env; 
         }
 
         // GET method to display the upload form
         public IActionResult Index()
         {
-            return View(); // Returns the view for the index action
+            return View(); 
         }
 
         // POST method to handle file uploads
         [HttpPost]
-        public async Task<IActionResult> Index(IFormFile file) // Accepting a file from the form
+        public async Task<IActionResult> Index(IFormFile file) 
         {
             const long maxFileSize = 2 * 1024 * 1024;
 
@@ -31,21 +31,21 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem.Controllers.Documents
             if (file == null)
             {
                 ViewBag.Message = "No file was uploaded.";
-                return View(); // Return the view without processing
+                return View(); 
             }
 
             // Check if the uploaded file is empty
             if (file.Length == 0)
             {
                 ViewBag.Message = "Uploaded file is empty.";
-                return View(); // Return the view without processing
+                return View(); 
             }
 
             // Check if the file size exceeds the maximum allowed size
             if (file.Length > maxFileSize)
             {
                 ViewBag.Message = "File size exceeds the maximum limit of 2 MB.";
-                return View(); // Return the view without processing
+                return View(); 
             }
 
             //path to the uploads folder using the web root path
@@ -54,7 +54,7 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem.Controllers.Documents
             // Check if the uploads folder exists, and create it if it doesn't
             if (!Directory.Exists(uploadsFolder))
             {
-                Directory.CreateDirectory(uploadsFolder); // Create the uploads directory
+                Directory.CreateDirectory(uploadsFolder); 
             }
 
             // Get the file name without extension and the file's extension
@@ -77,7 +77,7 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem.Controllers.Documents
             // Set a success message with the name of the uploaded file
             ViewBag.Message = $"{uniqueFileName} uploaded successfully.";
 
-            return View(); // Return the view after the upload
+            return View(); 
         }
     }
 }

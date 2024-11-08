@@ -1,6 +1,8 @@
 using CMCS.Infrastructure.Data;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
+using System;
 
 namespace Prog6212.POE.ContractMonthlyClaimsSystem
 {
@@ -39,7 +41,7 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=LandingPage}/{action=Index}/{id?}");
+                pattern: "{controller=Claims}/{action=Index}/{id?}");
 
             app.Run();
         }

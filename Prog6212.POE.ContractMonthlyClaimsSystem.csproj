@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CMCS.Domain\CMCS.Domain.csproj" />
     <ProjectReference Include="..\CMCS.Infrastructure\CMCS.Infrastructure.csproj" />
   </ItemGroup>
 

@@ -1,34 +1,65 @@
 ﻿@* Add the model of the claims *@
 @model IEnumerable<CMCS.Domain.Entities.ClaimsModels.ClaimsBaseModel>
 
-<h1>CLAIMS LIST</h1>
+<h1 class="text-center my-4">CLAIMS LIST</h1>
 @* This view displays all the claims that are present in the database *@
 
-@* Table to display the claims that are returned by the claims controller *@
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Claim Status</th>
-            <th>Claim Type</th>
-            <th>Date Created</th>
-            <th>Date Submitted</th>
-        </tr>
-    </thead>
-    <tbody>
-        @* For loop to retrieve all the data in the database *@
-        @foreach (var obj in Model)
-        {
-            <tr>
-                <td>@obj.Title</td>
-                <td>@obj.Description</td>
-                <td>@obj.ClaimStatus</td>
-                <td>@obj.ClaimType</td>
-                <td>@obj.DateCreated</td>
-                <td>@obj.DateSubmitted</td>
+<div class="container-fluid">
+    <div class="card border-0 p-2">
+        <div class="card-header bg-success bg-gradient text-center py-3">
+            <h2 class="text-white">Claims List</h2>
+        </div>
+        <div class="card-body border p-3">
+            <div class="row mb-3">
+                <div class="col text-end">
+                    <a asp-controller="Claims" asp-action="CreateClaim" class="btn btn-secondary">
+                        <i class="bi bi-plus-circle"></i> Create New Claim
+                    </a>
+                </div>
+            </div>
 
-            </tr>
-        }
-    </tbody>
-</table>
+            @* Responsive table *@
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Claim Status</th>
+                            <th>Claim Type</th>
+                            <th>Date Created</th>
+                            <th>Date Submitted</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @* For loop to retrieve all the data in the database *@
+                        @foreach (var obj in Model)
+                        {
+                            <tr>
+                                <td>@obj.Title</td>
+                                <td>@obj.Description</td>
+                                <td>@obj.ClaimStatus</td>
+                                <td>@obj.ClaimType</td>
+                                <td>@obj.DateCreated</td>
+                                <td>@obj.DateSubmitted</td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a asp-controller="Claims" asp-action="Update" asp-route-ClaimId="@obj.ClaimId"
+                                           class="btn btn-success btn-sm me-2">
+                                            <i class="bi bi-pencil-square"></i> Edit
+                                        </a>
+                                        <a asp-controller="Claims" asp-action="Delete" asp-route-ClaimId="@obj.ClaimId"
+                                           class="btn btn-danger btn-sm">
+                                            <i class="bi bi-trash-fill"></i> Delete
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
