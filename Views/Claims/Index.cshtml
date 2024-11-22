@@ -29,7 +29,6 @@
                             <th>Claim Type</th>
                             <th>Date Created</th>
                             <th>Date Submitted</th>
-                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,18 +42,6 @@
                                 <td>@obj.ClaimType</td>
                                 <td>@obj.DateCreated</td>
                                 <td>@obj.DateSubmitted</td>
-                                <td>
-                                    <div class="btn-group" role="group">
-                                        <a asp-controller="Claims" asp-action="Update" asp-route-ClaimId="@obj.ClaimId"
-                                           class="btn btn-success btn-sm me-2">
-                                            <i class="bi bi-pencil-square"></i> Edit
-                                        </a>
-                                        <a asp-controller="Claims" asp-action="Delete" asp-route-ClaimId="@obj.ClaimId"
-                                           class="btn btn-danger btn-sm">
-                                            <i class="bi bi-trash-fill"></i> Delete
-                                        </a>
-                                    </div>
-                                </td>
                             </tr>
                         }
                     </tbody>

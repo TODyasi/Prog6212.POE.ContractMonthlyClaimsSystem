@@ -15,12 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CMCS.Application\CMCS.Application.csproj" />
     <ProjectReference Include="..\CMCS.Domain\CMCS.Domain.csproj" />
     <ProjectReference Include="..\CMCS.Infrastructure\CMCS.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\Users\" />
   </ItemGroup>
 
 </Project>

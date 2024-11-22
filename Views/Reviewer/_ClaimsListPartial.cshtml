@@ -1,0 +1,42 @@
+﻿@model IEnumerable<CMCS.Domain.Entities.ClaimsModels.ClaimsBaseModel>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Claim Status</th>
+                <th>Claim Type</th>
+                <th>Hours Worked</th>
+                <th>Hourly Rate</th>
+                <th>Date Created</th>
+                <th>Date Submitted</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var claim in Model)
+            {
+                <tr>
+                    <td>@claim.Title</td>
+                    <td>@claim.Description</td>
+                    <td>@claim.ClaimStatus</td>
+                    <td>@claim.ClaimType</td>
+                    <td>@claim.HoursWorked</td>
+                    <td>@claim.HourlyRate</td>
+                    <td>@claim.DateCreated.ToShortDateString()</td>
+                    <td>@claim.DateSubmitted.ToShortDateString()</td>
+                    <td>
+                        <a asp-controller="Claims" asp-action="Details" asp-route-id="@claim.ClaimId" class="btn btn-info btn-sm">
+                            View Details
+                        </a>
+                        <a asp-controller="Claims" asp-action="Edit" asp-route-id="@claim.ClaimId" class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

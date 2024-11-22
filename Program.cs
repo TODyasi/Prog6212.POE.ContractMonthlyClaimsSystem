@@ -1,8 +1,7 @@
 using CMCS.Infrastructure.Data;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
-using System;
+
 
 namespace Prog6212.POE.ContractMonthlyClaimsSystem
 {
@@ -20,8 +19,7 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem
 
             // Configuring the dbContext to use sql server for the web project
             builder.Services.AddDbContext<ApplicationDbContext>(option =>
-            option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))); 
-
+            option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -41,7 +39,7 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Claims}/{action=Index}/{id?}");
+                pattern: "{controller=LandingPage}/{action=Index}/{id?}");
 
             app.Run();
         }

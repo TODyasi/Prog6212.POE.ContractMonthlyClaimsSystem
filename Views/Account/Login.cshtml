@@ -2,21 +2,123 @@
     ViewBag.Title = "Login";
 }
 
-<h1>Login</h1>
-<div>
-    <form asp-action="Login" asp-controller="Account" method="post">
-        <label>Email</label>
-        <br />
-        <input type="email" name="email" required />
-        <br />
-        <label>Password</label>
-        <br />
-        <input type="password" name="password" required />
-        <br />
-        <button type="submit" class="btn btn-secondary">Login</button>
-    </form>
-    @if (!string.IsNullOrEmpty(ViewBag.Message))
-    {
-        <div>@ViewBag.Message</div>
-    }
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* Reset styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #F3F4F6;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #1A237E;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            color: white;
+        }
+
+            .navbar img {
+                height: 50px;
+                width: 150px;
+            }
+
+            .navbar h1 {
+                margin-left: 20px;
+                font-size: 20px;
+            }
+
+        /* Form container */
+        .form-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            /* Form field styles */
+            .form-container label {
+                display: block;
+                margin-top: 15px;
+                font-weight: bold;
+                color: #1E3A8A;
+            }
+
+            .form-container input[type="email"],
+            .form-container input[type="password"] {
+                width: 100%;
+                padding: 10px;
+                margin-top: 5px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 14px;
+            }
+
+            /* Message styles */
+            .form-container .message {
+                margin-top: 15px;
+                color: red;
+                font-size: 14px;
+            }
+
+            /* Submit button */
+            .form-container button {
+                width: 100%;
+                padding: 12px;
+                background-color: #3B82F6;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                margin-top: 20px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+                .form-container button:hover {
+                    background-color: #2563EB;
+                }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <img src="/path/to/logo.png" alt="CMCS Logo">
+    </div>
+
+    <!-- Form container -->
+    <div class="form-container">
+        <h2>Login to Your Account</h2>
+        <form asp-action="Login" asp-controller="Account" method="post">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+
+            <button type="submit">Login</button>
+        </form>
+
+        <!-- Display message if available -->
+        @if (!string.IsNullOrEmpty(ViewBag.Message))
+        {
+            <div class="message">@ViewBag.Message</div>
+        }
+    </div>
+
+</body>
+</html>

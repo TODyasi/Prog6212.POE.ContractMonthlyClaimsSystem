@@ -1,0 +1,115 @@
+﻿@model CMCS.Domain.Entities.UserModels.UserModel
+
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+        background-color: #1A237E;
+        height: 70px;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        box-sizing: border-box;
+        z-index: 1000;
+    }
+
+    .navbar img {
+        height: 50px;
+        width: 150px;
+    }
+
+    .navbar .nav-links a {
+        margin-left: 10px;
+        color: white;
+        padding: 12px 8px;
+        font-size: 15px;
+        text-decoration: none;
+        background-color: #3B82F6;
+        border-radius: 8px;
+    }
+
+    .main-content {
+        margin-top: 70px;
+        padding: 20px;
+        background-color: #FFFFFF;
+        color: #111111;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        width: 100%;
+    }
+
+    .btn {
+        margin: 10px 5px;
+    }
+</style>
+
+<!-- Navbar -->
+<div class="navbar">
+    <img src="/path/to/logo.png" alt="CMCS Logo">
+    <div class="nav-links">
+        <a asp-controller="UploadDocuments" asp-action="Index">Upload Document</a>
+        <a asp-controller="NotFound" asp-action="Index">Profile</a>
+        <a asp-controller="NotFound" asp-action="Index">Help/Support</a>
+        <a asp-controller="NotFound" asp-action="Index">Logout</a>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+    <h1>Edit Lecturer</h1>
+
+    <form method="post">
+        <div class="form-group">
+            <label for="Name">Name</label>
+            <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required />
+        </div>
+
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" />
+        </div>
+
+        <div class="form-group">
+            <label for="PhoneNumber">Phone Number</label>
+            <input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" value="@Model.MobileNumber" />
+        </div>
+
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input type="password" class="form-control" id="Password" name="Password" />
+            <small class="form-text text-muted">Leave empty to keep the current password.</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Lecturer</button>
+        <a asp-action="ManageLecturers" class="btn btn-secondary">Back to List</a>
+    </form>
+</div>

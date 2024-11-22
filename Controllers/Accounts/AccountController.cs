@@ -65,6 +65,8 @@ namespace Prog6212.POE.ContractMonthlyClaimsSystem.Controllers.Accounts
 
                 case UserRole.AcademicManager:
                     return RedirectToAction("ReviewerView", "Reviewer");
+                case UserRole.HRManager:
+                    return RedirectToAction("Index", "HumanResources");
 
                 default:
                     return RedirectToAction("Index", "Home");

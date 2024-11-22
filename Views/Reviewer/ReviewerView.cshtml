@@ -1,7 +1,5 @@
 ﻿@using CMCS.Domain.Entities.UserModels
 @model IEnumerable<CMCS.Domain.Entities.ClaimsModels.ClaimsBaseModel>
-
-
 <style>
     /* Reset styles for body and html */
     body, html {
@@ -88,28 +86,101 @@
         color: #111111;
     }
 </style>
+
 <!-- Navbar -->
 <div class="navbar">
     <div class="navbar-right">
-        <a asp-controller="UploadDocuments" asp-action="Index">Upload Document</a>
-        <a asp-controller="Claims" asp-action="ComingSoon">Profile</a>
-        <a asp-controller="Claims" asp-action="ComingSoon">Help/Support</a>
-        <a asp-controller="Account" asp-action="Logout">Logout</a>
+        <a asp-controller="Claims" asp-action="ComingSoon" aria-label="Help and Support">Help/Support</a>
+        <a asp-controller="LandingPage" asp-action="Index" aria-label="Logout">Logout</a>
     </div>
 </div>
->
+
+<!-- Sidebar -->
 <div class="sidebar">
-    <a asp-controller="Claims" asp-action="Index" class="primary-button">
-        View Claims
+    <a asp-controller="Claims" asp-action="PendingClaims" aria-label="View Pending Claims" class="primary-button">
+        View Pending Claims
     </a>
-    <a asp-controller="Claims" asp-action="PendingClaims" class="primary-button">
-        Update Claims
+    <a asp-controller="Claims" asp-action="RejectedClaims" aria-label="View Pending Claims" class="primary-button">
+        View Rejected Claims
     </a>
-    <a asp-controller="Claims" asp-action="ComingSoon" class="primary-button">
-        Reviewer Details
-    </a>
-    <a asp-controller="Claims" asp-action="ComingSoon" class="primary-button">
-        Generate Report
+    <a asp-controller="Claims" asp-action="ApprovedClaims" aria-label="View Pending Claims" class="primary-button">
+        View Approved Claims
     </a>
 </div>
 
+<div class="main-content">
+    <h1>CLAIMS LIST</h1>
+    @* This view displays all the claims that are present in the database *@
+
+    @* Filter form to filter claims based on specified criteria *@
+    <form asp-action="FilterClaims" method="get" class="mb-4">
+        <div class="row">
+            @* Filter by Hours Worked *@
+            <div class="col-md-4">
+                <label for="minHoursWorked">Minimum Hours Worked</label>
+                <input type="number" name="minHoursWorked" id="minHoursWorked" class="form-control" placeholder="Enter minimum hours" step="0.01" />
+            </div>
+            <div class="col-md-4">
+                <label for="maxHoursWorked">Maximum Hours Worked</label>
+                <input type="number" name="maxHoursWorked" id="maxHoursWorked" class="form-control" placeholder="Enter maximum hours" step="0.01" />
+            </div>
+
+            @* Filter by Hourly Rate *@
+            <div class="col-md-4">
+                <label for="minHourlyRate">Minimum Hourly Rate</label>
+                <input type="number" name="minHourlyRate" id="minHourlyRate" class="form-control" placeholder="Enter minimum rate" step="0.01" />
+            </div>
+            <div class="col-md-4">
+                <label for="maxHourlyRate">Maximum Hourly Rate</label>
+                <input type="number" name="maxHourlyRate" id="maxHourlyRate" class="form-control" placeholder="Enter maximum rate" step="0.01" />
+            </div>
+
+            @* Filter by Claim Type *@
+            <div class="col-md-4">
+                <label for="claimType">Claim Type</label>
+                <input type="text" name="claimType" id="claimType" class="form-control" placeholder="Enter claim type" />
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">Filter</button>
+            <a asp-action="ReviewerClaimsView" class="btn btn-secondary">Reset</a>
+        </div>
+    </form>
+    @* Table to display the claims that are returned by the claims controller *@
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Claim Status</th>
+                <th>Claim Type</th>
+                <th>Date Created</th>
+                <th>Date Submitted</th>
+            </tr>
+        </thead>
+        <tbody>
+            @* For loop to retrieve all the data in the database *@
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <td>@obj.Title</td>
+                    <td>@obj.Description</td>
+                    <td>@obj.ClaimStatus</td>
+                    <td>@obj.ClaimType</td>
+                    <td>@obj.DateCreated</td>
+                    <td>@obj.DateSubmitted</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="mt-3">
+        @* Back button *@
+        <a asp-controller="Reviewer" asp-action="ReviewerView" class="btn btn-secondary">Back</a>
+    </div>
+
+</div>
+
+
+    

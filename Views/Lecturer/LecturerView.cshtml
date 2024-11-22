@@ -100,43 +100,14 @@
     <!-- Navigation Links -->
     <div class="nav-links">
         <a asp-controller="UploadDocuments" asp-action="Index">Upload Document</a>
-        <a asp-controller="Claims" asp-action="ComingSoon">Profile</a>
-        <a asp-controller="Claims" asp-action="ComingSoon">Help/Support</a>
-        <a asp-controller="Claims" asp-action="ComingSoon">Logout</a>
+        <a asp-controller="NotFound" asp-action="Index">Profile</a>
+        <a asp-controller="NotFound" asp-action="Index">Help/Support</a>
+        <a asp-controller="NotFound" asp-action="Index">Logout</a>
     </div>
 </div>
 
 <!-- Sidebar -->
 <div class="sidebar">
-    <a href="javascript:void(0);" id="addClaimLink">Add Claim</a>
-    <a asp-controller="Claims" asp-action="ComingSoon">Edit Claim</a>
-    <a asp-controller="Claims" asp-action="ComingSoon">Delete Claim</a>
-    <a asp-controller="Claims" asp-action="Index">View Claims</a>
+    <a asp-controller="Claims" asp-action="CreateClaim">Create new claim</a>
 </div>
 
-<!-- Main Content -->
-<div class="main-content">
-    <!-- The partial view will be loaded here via AJAX -->
-</div>
-
-<!-- Include jQuery for AJAX -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function() {
-        // Bind the click event to the "Add Claim" link
-        $("#addClaimLink").click(function() {
-            // Make an AJAX GET request to the CreateClaim action
-            $.ajax({
-                url: '@Url.Action("CreateClaim", "Claims")',  // The controller and action to load the partial view
-                type: 'GET',
-                success: function(response) {
-                    // On success, update the main-content area with the partial view
-                    $(".main-content").html(response);
-                },
-                error: function() {
-                    alert('Error loading claim form.');
-                }
-            });
-        });
-    });
-</script>
